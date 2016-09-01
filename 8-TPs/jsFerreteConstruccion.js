@@ -13,12 +13,24 @@ app.controller("controladorConstruccion",function($scope)
 	$scope.datos.ancho = '';
 	$scope.datos.radio = '';
 	$scope.resultado = '';
+	$scope.metros = '';
 
 
 	$scope.Rectangulo=function()
 	{
-		$scope.resultado = (Number($scope.datos.largo)*2+Number($scope.datos.largo)*2)*3;
+		$scope.resultado = (Number($scope.datos.largo)*2+Number($scope.datos.ancho)*2)*3;
 	}
 
+	$scope.Circulo=function()
+	{
+		$scope.resultado = (Number($scope.datos.radio)*Number($scope.datos.radio))*3.1415;	
+	}
+
+	$scope.Materiales=function()
+	{
+		$scope.metros = (Number($scope.datos.largo)*Number($scope.datos.ancho));
+
+		$scope.resultado = "Bolsas Cemento: "+ (Number($scope.metros)*2) + " - Bolsas Cal: "+ (Number($scope.metros)*3);
+	}
 
 });

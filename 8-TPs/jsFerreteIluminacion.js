@@ -8,7 +8,91 @@ E.	Si el importe final con descuento suma más de $120  se debe sumar un 10% de 
  ”Usted pago X de IIBB.”, siendo X el impuesto que se pagó. 
 
  */
-function CalcularPrecio () 
-{
- 	
-}
+
+var app= angular.module("FerreteIluminacion",[]);
+app.controller("controladorIluminacion",function($scope)
+	{
+		$scope.datos=[];
+		$scope.datos.lamparitas='';
+		$scope.datos.marca='';
+		$scope.datos.precioTotal='';
+		$scope.datos.precioFinal='';
+
+		
+		$scope.precioimp='';
+
+
+		$scope.resultado = '';
+
+		$scope.CalcularPrecio=function()
+		{
+			$scope.datos.precioTotal = (Number($scope.datos.lamparitas))*35;
+
+			if (Number($scope.datos.lamparitas)>=6) 
+			{
+				$scope.datos.precioFinal= (Number($scope.datos.precioTotal))*0.5;
+			}
+
+			if (Number($scope.datos.lamparitas)==5) 
+			{
+				if($scope.datos.marca == "ArgentinaLuz")
+				{
+					$scope.datos.precioFinal= (Number($scope.datos.precioTotal))*0.6;
+				}
+				else
+				{
+					$scope.datos.precioFinal= (Number($scope.datos.precioTotal))*0.7;	
+				}
+				
+			}
+
+			if (Number($scope.datos.lamparitas)==4) 
+			{
+				if($scope.datos.marca == "ArgentinaLuz" || $scope.datos.marca == "FelipeLamparas")
+				{
+					$scope.datos.precioFinal= (Number($scope.datos.precioTotal))*0.75;
+				}
+				else
+				{
+					$scope.datos.precioFinal= (Number($scope.datos.precioTotal))*0.8;	
+				}
+				
+			}
+
+			if (Number($scope.datos.lamparitas)==3) 
+			{
+				if($scope.datos.marca == "ArgentinaLuz")
+				{
+					$scope.datos.precioFinal= (Number($scope.datos.precioTotal))*0.85;
+				}
+				else if($scope.datos.marca == "FelipeLamparas")
+				{
+					$scope.datos.precioFinal= (Number($scope.datos.precioTotal))*0.9;	
+				}
+				else
+				{
+					$scope.datos.precioFinal= (Number($scope.datos.precioTotal))*0.95;
+				}
+				
+			}
+
+			if (Number($scope.datos.lamparitas)<=2) 
+			{
+				$scope.datos.precioFinal= (Number($scope.datos.precioTotal));
+			}
+
+			if (Number($scope.datos.precioFinal)>=120) 
+			{
+				
+				$scope.resultado= "$"+(Number($scope.datos.precioFinal)*1.10).toFixed(2) +"- Usted pago $"+ (Number($scope.datos.precioFinal)*0.10 ) + " de IIBB";
+				
+			}
+			else
+			{
+				$scope.resultado= "$"+Number($scope.datos.precioFinal);
+			}
+
+		}
+
+
+	});

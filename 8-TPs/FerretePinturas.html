@@ -10,19 +10,21 @@
 		<!--final de Estilos-->
 
 		<!--Lógica-Programación-->
+		<script type="text/javascript" src="../bower_components/angular/angular.min.js"></script>
 		<script type="text/javascript" src="jsFerretePinturas.js"></script>
         <!--Final de Lógica-Programación -->
 		
 
 		</head>
-	<body>
+	<body ng-app="FerretePinturas" ng-controller="controladorPinturas">
 		<div class="CajaUno animated bounceInDown">
 			
 		
 			<form id="FormIngreso">
 
-				<input type="text"  placeholder="Ingrese Temparatura" id="Temperatura">
-	
+				<input type="text" ng-model="temp" placeholder="Ingrese Temparatura" >
+				
+				<input type="text" ng-model="resultado" placeholder="Resultado" disabled>
 				<br>
 				
 			</form>
@@ -31,9 +33,9 @@
 		<div class="CajaUno animated bounceInLeft">
 			
 			
-			<button  class="MiBotonUTN" onclick="FahrenheitCentigrados()" >A- de Fahrenheit a Centígrados </button>
-			<button  class="MiBotonUTN" onclick="CentigradosFahrenheit()" >B- de Centígrados a Fahrenheit</button>
-			
+			<button  class="MiBotonUTN" ng-click="FahrenheitCentigrados()" >A- de Fahrenheit a Centígrados </button>
+			<button  class="MiBotonUTN" ng-click="CentigradosFahrenheit()" >B- de Centígrados a Fahrenheit</button>
+			Resultado: {{resultado}}
 
 		</div>
 
